@@ -10,3 +10,7 @@ export const getUserName = (args) => {
 
   return userName[1];
 }
+
+export const getParams = (strParams) => {
+  return  strParams.trim().split(' ').map((i) => i.trim().replaceAll('\'', '').replaceAll('\"', ''));
+}

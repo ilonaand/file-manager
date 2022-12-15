@@ -1,8 +1,16 @@
 import path from 'path';
-import { CWD, OPERATION_FAILED } from '../constatnts.js'; 
+import { OPERATION_FAILED } from '../constatnts.js'; 
 
-export const cd = (newPath) => {
-  const dir = path.resolve(process.cwd(), newPath);
-  process.chdir(dir);
-  CWD();
+import { checkFileExists } from '../utils/index.js';
+
+export const cd = async (params) => {
+  const newPath = params[1];
+  
+  const dir = newPath.includes(':') ? 
+    path.resolve(process.cwd(), newPath) : 
+    path.resolve(newPath);
+  
+  const check = await checkFileExists(dir);   
+  check ? process.chdir(dir) : OPERATION_FAILED();
+  return;
 }
