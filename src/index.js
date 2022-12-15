@@ -1,25 +1,29 @@
-import process from 'process';
-
-import { PROMPT, BYE, OPERATION_FAILED } from './constatnts.js'; 
+import { PROMPT, BYE, CWD, INVALID_INPUT } from './constatnts.js'; 
 import  readline  from 'readline';
 
 import * as utils from './utils/index.js';
+import * as commandFunctions from './commands/index.js';
+
+import os from 'os';
+
 const commandLineInterface = () => {
   const args = process.argv.slice(2); 
  
   const userName = utils.getUserName(args); 
 
-  console.log(PROMPT(userName));
+  PROMPT(userName);
+  process.chdir(os.homedir());
+  CWD();
 
   const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
-    prompt: `You are currently in ${process.cwd()}>`,
+    prompt: 'Print command >',
   });
 
   const commands = {
-    up: () => console.log('up'),
-    cd: () => console.log('cd'),
+    up: () => commandFunctions.up(),
+    cd: () => commandFunctions.cd('d'),
     ls: () => console.log('ls'),
     cat: () => console.log('cat'),
     rn: () => console.log('rn'),
@@ -37,13 +41,13 @@ const commandLineInterface = () => {
 
   rl.on('line', line => {
     const command = commands[line];
-    command ? command() : console.log(OPERATION_FAILED); 
+    command ? command() : INVALID_INPUT(); 
 
     rl.prompt();
   })
   
   rl.on('close', () => {
-    console.log(BYE(userName));
+    BYE(userName);
     process.exit();
   });
 
