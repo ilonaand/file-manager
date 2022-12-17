@@ -2,7 +2,7 @@ import { PROMPT, BYE, CWD, INVALID_INPUT } from './constatnts.js';
 import  readline  from 'readline';
 
 import * as utils from './utils/index.js';
-import { up, cd, ls } from './commands/index.js';
+import { up, cd, ls, cat, cp, mv, rm, rn, add } from './commands/index.js';
 
 import os from 'os';
 
@@ -31,13 +31,14 @@ const commandLineInterface = () => {
   } 
 
   const asyncCommands = {
-    cd: async (params) => { params.length === 2 ? await cd(params) : INVALID_INPUT()},
+    cd: async (params) => { params.length === 2 ? await cd(params[1]) : INVALID_INPUT()},
     ls: async (params) => { params.length === 1 ? await ls() : INVALID_INPUT()},
-    cat: () => console.log('cat'),
-    rn: () => console.log('rn'),
-    cp: () => console.log('cp'),
-    mv: () => console.log('mv'),
-    rm: () => console.log('rm'),
+    cat: async (params) => { params.length === 2 ? await cat(params[1]) : INVALID_INPUT()},
+    add: async (params) => { params.length === 2 ? await add(params[1]) : INVALID_INPUT()},
+    rn: async (params) => { params.length === 3 ? await rn(params[1], params[2]) : INVALID_INPUT()},
+    cp: async (params) => { params.length === 3 ? await cp(params[1], params[2]) : INVALID_INPUT()},
+    mv: async (params) => { params.length === 3 ? await mv(params[1], params[2]) : INVALID_INPUT()},
+    rm: async (params) => { params.length === 2 ? await rm(params[1]) : INVALID_INPUT()},
   } 
 
   rl.prompt();
