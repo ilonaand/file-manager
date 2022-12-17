@@ -12,5 +12,6 @@ export const getUserName = (args) => {
 }
 
 export const getParams = (strParams) => {
-  return  strParams.trim().split(' ').map((i) => i.trim().replaceAll('\'', '').replaceAll('\"', ''));
+  return  strParams.trim().split(' ').filter((i) => i !== '').
+     map((i) => i.trim().replaceAll('\'', '').replaceAll('\"', ''));
 }
