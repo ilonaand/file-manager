@@ -2,7 +2,7 @@ import { PROMPT, BYE, CWD, INVALID_INPUT } from './constatnts.js';
 import  readline  from 'readline';
 
 import * as utils from './utils/index.js';
-import { up, cd, ls, cat, cp, mv, rm, rn, add } from './commands/index.js';
+import { up, cd, ls, cat, cp, mv, rm, rn, add, hash } from './commands/index.js';
 
 import os from 'os';
 
@@ -23,7 +23,6 @@ const commandLineInterface = () => {
 
   const commands = {
     up: (params) => { params.length === 1 ? up() : INVALID_INPUT()},
-    hash: () => console.log('hash'),
     os: () => console.log('os'),
     compress: () => console.log('compress'),
     decompress: () => console.log('decompress'),
@@ -39,6 +38,7 @@ const commandLineInterface = () => {
     cp: async (params) => { params.length === 3 ? await cp(params[1], params[2]) : INVALID_INPUT()},
     mv: async (params) => { params.length === 3 ? await mv(params[1], params[2]) : INVALID_INPUT()},
     rm: async (params) => { params.length === 2 ? await rm(params[1]) : INVALID_INPUT()},
+    hash: async (params) => { params.length === 2 ? await hash(params[1]) : INVALID_INPUT()},
   } 
 
   rl.prompt();
