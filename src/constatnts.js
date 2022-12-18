@@ -1,6 +1,6 @@
 const DEFAULT_USER = 'Username';
 
-export const OPERATION_FAILED = () => console.log('Operation failed');
+export const OPERATION_FAILED = () => console.error('Operation failed');
 
 export const PROMPT = (name) => console.log(`Welcome to the File Manager, ${name ?? DEFAULT_USER}!`);
 
@@ -8,4 +8,4 @@ export const BYE = (name) => console.log(`\rThank you for using File Manager, ${
 
 export const CWD = () => console.log(`You are currently in ${process.cwd()}`);
 
-export const INVALID_INPUT = () => console.log('Invalid input');
+export const INVALID_INPUT = () => console.error('Invalid input');

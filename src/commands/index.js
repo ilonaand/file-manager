@@ -7,4 +7,7 @@ export { cp } from './cp.js';
 export { mv } from './mv.js';
 export { rm } from './rm.js';
 export { rn } from './rn.js';
-export { hash } from './hash.js'
+export { hash } from './hash.js';
+export { osCom } from './os.js';
+export { compress } from './compress.js';
+export { decompress } from './decompress.js';

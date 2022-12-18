@@ -6,7 +6,7 @@ import { checkFileExists } from '../utils/index.js';
 
 import { pipeline }  from 'stream';
 
-import { createReadStream, createWriteStream } from 'fs'
+import { createReadStream, createWriteStream } from 'fs';
 
 export const cp = async (pathToFile, pathToNewDirectory) => {
 

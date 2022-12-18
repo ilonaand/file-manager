@@ -1,10 +1,10 @@
 import { PROMPT, BYE, CWD, INVALID_INPUT } from './constatnts.js'; 
-import  readline  from 'readline';
+import  readline  from 'readline/promises';
 
 import * as utils from './utils/index.js';
-import { up, cd, ls, cat, cp, mv, rm, rn, add, hash } from './commands/index.js';
+import { up, cd, ls, cat, cp, mv, rm, rn, add, hash, osCom, compress, decompress } from './commands/index.js';
 
-import os from 'os';
+import os from 'os'; 
 
 const commandLineInterface = () => {
   const args = process.argv.slice(2); 
@@ -23,9 +23,7 @@ const commandLineInterface = () => {
 
   const commands = {
     up: (params) => { params.length === 1 ? up() : INVALID_INPUT()},
-    os: () => console.log('os'),
-    compress: () => console.log('compress'),
-    decompress: () => console.log('decompress'),
+    os: (params) => { params.length === 2 ? osCom(params[1]) : INVALID_INPUT()},
     '.exit': () => rl.close(),
   } 
 
@@ -38,6 +36,8 @@ const commandLineInterface = () => {
     cp: async (params) => { params.length === 3 ? await cp(params[1], params[2]) : INVALID_INPUT()},
     mv: async (params) => { params.length === 3 ? await mv(params[1], params[2]) : INVALID_INPUT()},
     rm: async (params) => { params.length === 2 ? await rm(params[1]) : INVALID_INPUT()},
+    compress: async (params) => { params.length === 3 ? await compress(params[1], params[2]) : INVALID_INPUT()},
+    decompress: async(params) => { params.length === 3 ? await decompress(params[1], params[2]) : INVALID_INPUT()},
     hash: async (params) => { params.length === 2 ? await hash(params[1]) : INVALID_INPUT()},
   } 
 
