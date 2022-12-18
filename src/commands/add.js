@@ -9,7 +9,7 @@ export const add =  async (newFileName) => {
   const check = await checkFileExists(filePath);   
   if (check)  { OPERATION_FAILED(); return } 
   try {
-    return await writeFile(filePath, '', { flag: 'w+', encoding: 'utf8'});
+    return await writeFile(filePath, '', {  encoding: 'utf8'});
   } catch {
     OPERATION_FAILED();
   };

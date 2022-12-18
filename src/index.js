@@ -44,7 +44,8 @@ const commandLineInterface = () => {
   rl.prompt();
 
   rl.on('line', async (line)  => {
-    const params = utils.getParams(line);
+    const params = utils.getParams(line.trim());
+   
     const command = commands[params[0]];
     const asyncCommand = asyncCommands[params[0]];
     command ? command(params) : asyncCommand ? await asyncCommand(params) : INVALID_INPUT(); 
