@@ -13,7 +13,7 @@ export const decompress = async (pathToFile, pathToDestination) => {
  
   if (!check) { OPERATION_FAILED(); return } 
 
-  const streamRead = createReadStream(pathToFile, {encoding: 'utf8'});
+  const streamRead = createReadStream(pathToFile);
 
   const streamWrite = createWriteStream(pathToDestination);
 
