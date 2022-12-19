@@ -9,7 +9,7 @@ export const rn = async (pathToFile, newFileName) => {
    if (!check)  { OPERATION_FAILED(); return } 
 
    const fileDir = path.dirname(pathToFile);
-   const newPathToFile = path.join(fileDir, newFileName);
+   const newPathToFile = path.resolve(fileDir, newFileName);
 
    const checkNew = await checkFileExists(newPathToFile);
    if (checkNew)  { OPERATION_FAILED(); return } 

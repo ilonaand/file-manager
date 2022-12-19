@@ -13,10 +13,10 @@ export const osCom = async (subCommand) => {
   action = action.slice(2);
   
   switch (action) {
-    case 'EOL': process.stdout.write(os.EOL); break;
+    case 'EOL': process.stdout.write(JSON.stringify(os.EOL) + os.EOL); break;
     case 'cpus': console.log(os.cpus()); break;
-    case 'homedir': process.stdout.write(`${os.homedir()}${os.EOL}`); break;
-    case 'username': process.stdout.write(`${os.userInfo().username}${os.EOL}`); break;
-    case 'architecture': process.stdout.write(`${os.arch()}${os.EOL}`); break;
+    case 'homedir': process.stdout.write(os.homedir() + os.EOL); break;
+    case 'username': process.stdout.write(os.userInfo().username + os.EOL); break;
+    case 'architecture': process.stdout.write(os.arch() + os.EOL); break;
   }
 }
