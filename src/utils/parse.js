@@ -48,5 +48,5 @@ export const getParams = (strParams) => {
   }
 
   parse(argum);
-  return params;
+  return params.map((i) => i.trim().replaceAll('\'', '').replaceAll('\"', ''));
 }
